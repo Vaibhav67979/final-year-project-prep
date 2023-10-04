@@ -73,48 +73,53 @@ import numpy as np
 
 
 # Assuming you have a DataFrame 'df' with time series data of the machine
-df = pd.DataFrame({
-    'Time': pd.date_range(start='1/1/2023', periods=100),
-    'Value': np.random.randn(100).cumsum()
-})
+# df = pd.DataFrame({
+#     'Time': pd.date_range(start='1/1/2023', periods=100),
+#     'Value': np.random.randn(100).cumsum()
+# })
+#
+# fig = go.Figure()
+#
+# # Add trace
+# fig.add_trace(go.Scatter(x=df['Value'], y=df['Time'], mode='lines+markers', name='lines+markers'))
+#
+# # Add shapes to the layout
+# shapes = []
+# for i in range(len(df)):
+#     if df['Value'].iloc[i] > 8:
+#         color = 'red'
+#     elif 6 <= df['Value'].iloc[i] <= 8:
+#         color = 'yellow'
+#     else:
+#         color = 'green'
+#
+#     shapes.append(
+#         dict(
+#             type="rect",
+#             xref="paper",
+#             yref="y",
+#             x0=0,
+#             y0=df['Time'].iloc[i],
+#             x1=1,
+#             y1=df['Time'].iloc[i + 1] if i < len(df) - 1 else df['Time'].iloc[i],
+#             fillcolor=color,
+#             opacity=0.5,
+#             layer="below",
+#             line_width=0,
+#         )
+#     )
+#
+# fig.update_layout(
+#     title='Run Chart of Machine',
+#     xaxis_title='Value',
+#     yaxis_title='Time',
+#     shapes=shapes
+# )
+#
+# fig.show()
 
-fig = go.Figure()
 
-# Add trace
-fig.add_trace(go.Scatter(x=df['Value'], y=df['Time'], mode='lines+markers', name='lines+markers'))
+import plotly.express as px
 
-# Add shapes to the layout
-shapes = []
-for i in range(len(df)):
-    if df['Value'].iloc[i] > 8:
-        color = 'red'
-    elif 6 <= df['Value'].iloc[i] <= 8:
-        color = 'yellow'
-    else:
-        color = 'green'
-
-    shapes.append(
-        dict(
-            type="rect",
-            xref="paper",
-            yref="y",
-            x0=0,
-            y0=df['Time'].iloc[i],
-            x1=1,
-            y1=df['Time'].iloc[i + 1] if i < len(df) - 1 else df['Time'].iloc[i],
-            fillcolor=color,
-            opacity=0.5,
-            layer="below",
-            line_width=0,
-        )
-    )
-
-fig.update_layout(
-    title='Run Chart of Machine',
-    xaxis_title='Value',
-    yaxis_title='Time',
-    shapes=shapes
-)
-
-fig.show()
-
+fig = px.scatter(x=range(10), y=range(10))
+fig.write_html("file.html", auto_open=True)
