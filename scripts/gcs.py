@@ -1,4 +1,6 @@
 import pandas as pd
+
+from scripts.xbar_rbar import spc_analysis
 from visualize import visualize
 
 WL1 = 1050
@@ -13,3 +15,4 @@ df['DateTime'] = pd.to_datetime(df['Date'].dt.strftime('%d-%m-%Y') + ' ' + df['T
 target_date = '30-05-2023'
 target_date2 = '31-05-2023'
 visualize(df, target_date, target_date2, WL1, LCL, UCL, SC1, SC2)
+spc_analysis(df, target_date, target_date2, UCL, LCL)
